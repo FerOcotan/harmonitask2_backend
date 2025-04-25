@@ -1,0 +1,34 @@
+import { Request, Response } from 'express';
+import Project from '../models/Project';
+
+export class ProjectController { 
+    
+    
+
+    static async createProject(req:Request, res:Response) {
+
+        const project = new Project(req.body)
+
+        try {
+            await project.save()
+            res.send("Project created successfully")
+            
+        } catch (error) {
+            console.log(error)
+        }
+
+ 
+ 
+     }
+
+
+    static async getAllProjects(req:Request, res:Response) {
+
+       res.send("Get all projects")
+
+    }
+
+ 
+
+
+}
