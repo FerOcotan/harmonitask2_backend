@@ -30,7 +30,10 @@ export class TaskController {
                             .populate({path: 'notes', populate: {path: 'createdBy', select: 'id name email' }})
             res.json(task)
         } catch (error) {
-            res.status(500).json({error: 'Hubo un error'})
+            res.status(500).json({ 
+                error: error.message || 'Error al obtener la tarea',
+                details: process.env.NODE_ENV === 'development' ? error : undefined
+              });
         }
     }
 
